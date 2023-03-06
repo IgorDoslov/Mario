@@ -1068,6 +1068,7 @@ MonoBehaviour:
   force: 35
   mass: 1
   drag: 0.98
+  inputX: 0
   jumpForce: 30
   gravity: -90
   xTarget: 0
@@ -1266,3 +1267,4 @@ MonoBehaviour:
   xOffset: 4
   yOffset: 2
   followSpeed: 5
+  borderOffset: {x: 0.1, y: 0.5}

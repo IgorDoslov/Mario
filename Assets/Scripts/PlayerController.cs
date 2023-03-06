@@ -8,7 +8,7 @@ public class PlayerController : MonoBehaviour
     public float force = 10f;
     public float mass = 1f;
     public float drag = 0.98f;
-    float inputX = 0;
+    public float inputX = 0;
     public float jumpForce = 15f;
     public float gravity = -9.81f;
     public float xTarget = 0f;
