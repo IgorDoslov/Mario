@@ -1073,6 +1073,8 @@ MonoBehaviour:
   gravity: -90
   xTarget: 0
   yTarget: 0
+  hangTime: 0.2
+  influence: 0.6
 --- !u!212 &1686459516
 SpriteRenderer:
   m_ObjectHideFlags: 0

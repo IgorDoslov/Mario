@@ -13,6 +13,11 @@ public class PlayerController : MonoBehaviour
     public float gravity = -9.81f;
     public float xTarget = 0f;
     public float yTarget = 0f;
+    float timer = 0f;
+    public float hangTime = 0.2f;
+    public float influence = 0.6f;
+    public bool isGrounded;
+
 
     void Update()
     {
@@ -34,7 +39,7 @@ public class PlayerController : MonoBehaviour
         velocity.x = TailyTransitionTo(velocity.x, xTarget, dt, drag);
         //velocity.y = TailyTransitionTo(velocity.y, yTarget, dt, drag);
 
-        
+
 
         transform.position = new Vector2(transform.position.x + velocity.x * dt, transform.position.y + velocity.y * dt);
 
@@ -53,10 +58,35 @@ public class PlayerController : MonoBehaviour
 
     void Jump(float dt)
     {
-        if (Input.GetKeyDown(KeyCode.Space))
+
+        isGrounded = Physics2D.OverlapCircle(transform.position, 1f);
+
+        if (isGrounded)
         {
-            velocity.y = jumpForce;
+            if (Input.GetKeyDown(KeyCode.Space))
+            {
+                velocity.y = jumpForce;
+            }
+            else if (Input.GetKey(KeyCode.Space))
+            {
+                timer += dt;
+                if (timer < hangTime)
+                {
+                    velocity.y = jumpForce * influence;
+
+                }
+            }
+
+            if (Input.GetKeyUp(KeyCode.Space))
+            {
+                timer = 0f;
+            }
         }
+    }
+
+    private void OnDrawGizmos()
+    {
+        Gizmos.DrawSphere(transform.position, 1f);
     }
 
     void GetInput()
