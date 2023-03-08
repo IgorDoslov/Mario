@@ -820,7 +820,7 @@ MonoBehaviour:
   - {fileID: 422377355}
   - {fileID: 164610157}
   - {fileID: 462110872}
-  detectionThreshold: 10
+  detectionThreshold: 5
 --- !u!4 &1247904326
 Transform:
   m_ObjectHideFlags: 0

@@ -18,6 +18,24 @@ public class PlayerController : MonoBehaviour
     public float influence = 0.6f;
     public bool isGrounded;
     public float overlapCircleRadius = 1f;
+    SpriteRenderer spriteRenderer;
+
+    private void OnEnable()
+    {
+        AABB.onAABBCollision += ChangePlayerColour;
+        AABB.onAABBCollision += PushPlayerAway;
+    }
+
+    private void OnDisable()
+    {
+        AABB.onAABBCollision -= ChangePlayerColour;
+        AABB.onAABBCollision -= PushPlayerAway;
+
+    }
+    private void Awake()
+    {
+        spriteRenderer = GetComponent<SpriteRenderer>();
+    }
 
     void Update()
     {
@@ -25,6 +43,7 @@ public class PlayerController : MonoBehaviour
 
         GetInput();
         HorizontalMovement(dt);
+        CheckIsGrounded();
         Jump(dt);
     }
 
@@ -56,10 +75,13 @@ public class PlayerController : MonoBehaviour
 
     }
 
+    void CheckIsGrounded()
+    {
+        isGrounded = Physics2D.OverlapCircle(transform.position, overlapCircleRadius);
+    }
+
     void Jump(float dt)
     {
-
-        isGrounded = Physics2D.OverlapCircle(transform.position, overlapCircleRadius);
 
         if (isGrounded)
         {
@@ -107,7 +129,16 @@ public class PlayerController : MonoBehaviour
         }
     }
 
+    void ChangePlayerColour()
+    {
+        spriteRenderer.color = new Color(Random.Range(0f, 1f), Random.Range(0f, 1f), Random.Range(0f, 1f), 1f);
+    }
 
+    void PushPlayerAway()
+    {
+        velocity.y = velocity.y * -1f;
+        velocity.x = velocity.x * -1f;
+    }
 
     private static float simulationFPS;
 
