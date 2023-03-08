@@ -17,7 +17,7 @@ public class PlayerController : MonoBehaviour
     public float hangTime = 0.2f;
     public float influence = 0.6f;
     public bool isGrounded;
-
+    public float overlapCircleRadius = 1f;
 
     void Update()
     {
@@ -43,9 +43,9 @@ public class PlayerController : MonoBehaviour
 
         transform.position = new Vector2(transform.position.x + velocity.x * dt, transform.position.y + velocity.y * dt);
 
-        if (transform.position.y <= -4f)
+        if (transform.position.y <= -7f)
         {
-            transform.position = new Vector2(transform.position.x, -4f);
+            transform.position = new Vector2(transform.position.x, -7f);
         }
 
         // if velocity is close to 0 and no input, clamp to 0
@@ -59,7 +59,7 @@ public class PlayerController : MonoBehaviour
     void Jump(float dt)
     {
 
-        isGrounded = Physics2D.OverlapCircle(transform.position, 1f);
+        isGrounded = Physics2D.OverlapCircle(transform.position, overlapCircleRadius);
 
         if (isGrounded)
         {
@@ -86,7 +86,9 @@ public class PlayerController : MonoBehaviour
 
     private void OnDrawGizmos()
     {
-        Gizmos.DrawSphere(transform.position, 1f);
+        Gizmos.color = Color.yellow;
+
+        Gizmos.DrawWireSphere(transform.position, overlapCircleRadius);
     }
 
     void GetInput()

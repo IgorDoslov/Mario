@@ -62,7 +62,7 @@ public class CameraController : MonoBehaviour
     {
         Gizmos.color = Color.green;
         Vector2 border = CalculateThreshold();
-        Gizmos.DrawSphere(transform.position, border.x);
+        Gizmos.DrawWireSphere(transform.position, border.x);
 
     }
 
