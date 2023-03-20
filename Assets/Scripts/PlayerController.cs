@@ -19,22 +19,24 @@ public class PlayerController : MonoBehaviour
     public bool isGrounded;
     public float overlapCircleRadius = 1f;
     SpriteRenderer spriteRenderer;
+    public BoxCollider2D playerCollider;
 
     private void OnEnable()
     {
-        AABB.onAABBCollision += ChangePlayerColour;
-        AABB.onAABBCollision += PushPlayerAway;
+        //AABB.onAABBCollision += ChangePlayerColour;
+        //AABB.onAABBCollision += PushPlayerAway;
     }
 
     private void OnDisable()
     {
-        AABB.onAABBCollision -= ChangePlayerColour;
-        AABB.onAABBCollision -= PushPlayerAway;
-
+        //AABB.onAABBCollision -= ChangePlayerColour;
+        //AABB.onAABBCollision -= PushPlayerAway;
     }
+
     private void Awake()
     {
         spriteRenderer = GetComponent<SpriteRenderer>();
+        playerCollider = GetComponent<BoxCollider2D>();
     }
 
     void Update()
@@ -52,7 +54,7 @@ public class PlayerController : MonoBehaviour
         float accel = (force / mass) * inputX;
 
         velocity.x += accel * dt;
-        velocity.y += gravity * dt;
+        //velocity.y += gravity * dt;
 
         // taily here. Drag is between 0 and 1. Good drag 0.9 - 0.98. Below this floaty.
         velocity.x = TailyTransitionTo(velocity.x, xTarget, dt, drag);
@@ -62,10 +64,10 @@ public class PlayerController : MonoBehaviour
 
         transform.position = new Vector2(transform.position.x + velocity.x * dt, transform.position.y + velocity.y * dt);
 
-        if (transform.position.y <= -7f)
-        {
-            transform.position = new Vector2(transform.position.x, -7f);
-        }
+        //if (transform.position.y <= -7f)
+        //{
+        //    transform.position = new Vector2(transform.position.x, -7f);
+        //}
 
         // if velocity is close to 0 and no input, clamp to 0
         if (inputX == 0f && Mathf.Abs(velocity.x) < 0.9f)
@@ -129,15 +131,14 @@ public class PlayerController : MonoBehaviour
         }
     }
 
-    void ChangePlayerColour()
+    void ChangePlayerColour(int id)
     {
         spriteRenderer.color = new Color(Random.Range(0f, 1f), Random.Range(0f, 1f), Random.Range(0f, 1f), 1f);
     }
 
-    void PushPlayerAway()
+    void PushPlayerAway(int id)
     {
         velocity.y = velocity.y * -1f;
-        velocity.x = velocity.x * -1f;
     }
 
     private static float simulationFPS;
