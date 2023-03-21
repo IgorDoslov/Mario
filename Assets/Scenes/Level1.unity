@@ -329,7 +329,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 253558326}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -14.8, y: 6.1, z: 0}
+  m_LocalPosition: {x: 10.02, y: 3.03, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -1011,7 +1011,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a88d3cf7c73c1134bb54cd707bc69e8e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  player: {fileID: 253558327}
+  player: {fileID: 1686459518}
   other:
   - {fileID: 1260332599}
   detectionThreshold: 5
@@ -1134,7 +1134,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1260332598}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 15.62, y: 2.16, z: 0}
+  m_LocalPosition: {x: 15.62, y: -4.42, z: 0}
   m_LocalScale: {x: 2, y: 2, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -1483,12 +1483,12 @@ MonoBehaviour:
     position: {x: 6, y: 4}
     size: {x: 2, y: 2}
     velocity: {x: 0, y: 0}
-    centre: {x: 0, y: 0}
+    centre: {x: 7, y: 5}
   player:
     position: {x: 3, y: 3}
     size: {x: 1, y: 1}
     velocity: {x: 0, y: 0}
-    centre: {x: 0, y: 0}
+    centre: {x: 3.5, y: 3.5}
   contactPoint: {x: 0, y: 0}
   contactNormal: {x: 0, y: 0}
   tHitNear: 0
@@ -1497,6 +1497,7 @@ MonoBehaviour:
   tFar: {x: 0, y: 0}
   isColliding: 0
   playerSpeed: 6
+  myRay: {x: 0, y: 0}
 --- !u!212 &1665371543
 SpriteRenderer:
   m_ObjectHideFlags: 0
